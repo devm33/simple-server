@@ -1,6 +1,6 @@
 # [simple-server](https://soundcloud.com/theshins/simple-song)
 
-A simple node.js file server.
+A simple node.js file server. PUT a file, GET a file.
 
 ## Running
 
