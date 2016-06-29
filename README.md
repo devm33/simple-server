@@ -13,15 +13,19 @@ npm install
 
 ## Testing
 
+Upload a test file
+
 ```
 curl localhost:8080/some/path/file.json --upload-file package.json
 ```
+
+Check to see it was written to disk
 
 ```
 ls -R root
 ```
 
-Go to <http://localhost:8080/root/some/path/file.json>
+Then get it from <http://localhost:8080/root/some/path/file.json>
 
 ## Options
 
