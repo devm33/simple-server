@@ -1,3 +1,6 @@
+# Defualt directory for files
+root
+
 # Logs
 logs
 *.log
