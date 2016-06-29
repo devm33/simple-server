@@ -1,8 +1,6 @@
-# simple-server
+# [simple-server](https://soundcloud.com/theshins/simple-song)
 
-A simple node.js origin server
-
-<https://soundcloud.com/theshins/simple-song>
+A simple node.js file server.
 
 ## Running
 
