@@ -7,6 +7,9 @@ var FILE_ROOT = __dirname + '/root';
 var URL_ROOT = '/root';
 
 var express = require('express');
+var fs = require('fs');
+var mkdirp = require('mkdirp');
+
 var app = express();
 
 app.get('/', function(req, res) {
@@ -14,9 +17,15 @@ app.get('/', function(req, res) {
 });
 
 app.put('/*', function(req, res) {
-  // TODO save file to FILE_ROOT
-  console.log(req.files);
-  res.send(req.path.slice(URL_ROOT.length));
+  var reqPathDirname = req.path.substr(0, req.path.lastIndexOf('/'));
+  mkdirp(FILE_ROOT + reqPathDirname, function (err) {
+    if (err) {
+      console.error(err);
+    } else {
+      req.pipe(fs.createWriteStream(FILE_ROOT + req.path));
+      res.send(req.path);
+    }
+  });
 });
 
 app.use(URL_ROOT, express.static(FILE_ROOT));
