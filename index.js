@@ -43,3 +43,7 @@ app.use('/' + argv.url, express.static(argv.root));
 app.listen(argv.port, function () {
   console.log('server started at http://localhost:' + argv.port);
 });
+
+process.on('uncaughtException', function(ex) {
+  console.error('Uncaught exception', ex);
+});
