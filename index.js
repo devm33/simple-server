@@ -14,7 +14,8 @@ var mkdirp = require('mkdirp');
 var app = express();
 
 app.get('/', function(req, res) {
-  res.send('Well this is just a simple server.');
+  res.send('<a href="https://github.com/devm33/simple-server">' +
+           'Well this is just a simple server.</a>');
 });
 
 app.put('/*', function(req, res) {
