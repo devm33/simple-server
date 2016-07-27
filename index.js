@@ -19,15 +19,23 @@ app.get('/', function(req, res) {
 });
 
 app.put('/*', function(req, res) {
-  var reqPathDirname = req.path.substr(0, req.path.lastIndexOf('/'));
-  mkdirp(argv.root + reqPathDirname, function (err) {
-    if (err) {
-      console.error(err);
-    } else {
-      req.pipe(fs.createWriteStream(argv.root + req.path));
-      res.send(req.path);
-    }
-  });
+  try {
+    var reqPathDirname = req.path.substr(0, req.path.lastIndexOf('/'));
+    mkdirp(argv.root + reqPathDirname, function (err) {
+      if (err) {
+        console.error(err);
+        res.status(500);
+        res.send('Exception writing to directory.');
+      } else {
+        req.pipe(fs.createWriteStream(argv.root + req.path));
+        res.send(req.path);
+      }
+    });
+  } catch (ex) {
+    console.error('Exception saving ', req.path, ex);
+    res.status(500);
+    res.send('Exception saving file.');
+  }
 });
 
 app.use('/' + argv.url, express.static(argv.root));
